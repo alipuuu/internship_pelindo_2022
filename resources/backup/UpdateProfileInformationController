@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class UpdateProfileInformationController extends Controller
+{
+    public function edit()
+    {
+        return view('users.edit');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['email','required'],
+            'nik' => ['required'],
+            'no_telp' => ['required'],
+            'berkas' => ['required'],
+            'penempatans' => ['required'],
+            'divisis' => ['required'],
+        ]);
+
+        auth()->user()->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'nik' => $request->nik,
+            'no_telp' => $request->no_telp,
+            'berkas' => $request->berkas,
+            'penempatans' => $request->penempatans,
+            'divisis' => $request->divisis,
+        ]);
+
+        return back()->with('sukses');
+    }
+}

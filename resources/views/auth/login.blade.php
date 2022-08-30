@@ -41,6 +41,12 @@
         <div class="container">
             <div class="login-box ptb--100">
                 <form method="POST" action="{{ route('login') }}">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+                    @if (Session::has('fail'))
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
                     @csrf
                     <div class="login-form-head">
                         <a href="/">

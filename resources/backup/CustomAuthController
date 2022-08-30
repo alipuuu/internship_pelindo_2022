@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\UserrModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
+class CustomAuthController extends Controller
+{
+    public function login()
+    {
+        return view('auth.login');
+    }
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function registerUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|max:12',
+            'nik' => 'required|unique:users|min:16|max:16',
+            'instansi' => 'required',
+            'no_telp' => 'min:12',
+            'berkas' => "required|mimes:pdf|max:10000",
+            'penempatans' => 'required',
+            'divisis' => 'required',
+        ]);
+        $user = new UserrModel();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->nik = $request->nik;
+        $user->instansi = $request->instansi;
+        $user->no_telp = $request->no_telp;
+        $user->berkas = $request->berkas;
+        $user->penempatans = $request->penempatans;
+        $user->divisis = $request->divisis;
+        $res = $user->save();
+        if($res){
+            return view('home')->with('success', 'successfully registered');
+        }else{
+            return back()->with('fail', 'something wrong');
+        }
+    }
+
+    public function loginUser(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|max:12',
+        ]);
+        $user = UserrModel::where('email','=',$request->email)->first();
+        if($user){
+            if(Hash::check($request->password,$user->password)){
+                $request->session()->put('loginId', $user->id);
+                return redirect('dashboard');
+            }else{
+            return back()->with('fail', 'password not matches');
+            }
+        }else{
+            return back()->with('fail', 'password not matches');
+        }
+    }
+
+    public function dashboard(Request $request)
+    {
+        $data = array();
+        if(Session::has('loginId')) {
+            $data = UserrModel::where('email', '=', Session::get('loginId'))->first();
+        }
+        return view('dashboard' , compact('data'));
+    }
+
+    public function logout()
+    {
+        if (Session::has('loginId')) {
+            Session::pull('loginId');
+            return redirect('login');
+        }
+    }
+}

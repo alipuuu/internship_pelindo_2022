@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\UserrModel;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -50,9 +51,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required'],
+            'jenis_magang' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'nik' => ['required'],
+            'instansi' => ['required'],
+            'no_telp' => ['required'],
+            'berkas' => ['required'],
+            'status' => ['required'],
+            'level' => ['required'],
+            'penempatans' => ['required'],
+            'divisis' => ['required'],
         ]);
     }
 
@@ -60,14 +70,25 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\Models\UserrModel
      */
     protected function create(array $data)
     {
-        return User::create([
+        // dd($data);
+        return UserrModel::create([
             'name' => $data['name'],
+            'jenis_magang' => $data['jenis_magang'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nik' => $data['nik'],
+            'instansi' => $data['instansi'],
+            'no_telp' => $data['no_telp'],
+            'berkas' => $data['berkas'],
+            'status' => $data['status'],
+            'level' => $data['level'],
+            'penempatans' => $data['penempatans'],
+            'divisis' => $data['divisis'],
         ]);
     }
+
 }

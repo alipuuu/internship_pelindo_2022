@@ -1,0 +1,111 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\UserrModel;
+use Illuminate\Support\Facades\Hash;
+
+class UserrController extends Controller
+{
+    public function __construct()
+    {
+        $this->UserrModel = new UserrModel();
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $userr = UserrModel::all();
+        $daftar = UserrModel::where('status','1')->get();
+        $editdaftar = UserrModel::all();
+        $pendaftaran = UserrModel::with(['penempatan','user'])->get();
+        $tempat = UserrModel::all();
+        $depart = UserrModel::all();
+        return view('inside.v_userr', compact('pendaftaran','userr','daftar','tempat','depart', 'editdaftar'));
+    }
+
+    function status_update($id)
+    {
+        //get product status with the help of product ID
+        $pendaftaran = UserrModel::select('status')->where('id','=',$id)->first();
+
+        //Check user status
+        if($pendaftaran->status == '1'){
+            $status = '0';
+        }else{
+            $status = '1';
+        }
+
+        //update product status
+        $values = array('status' => $status );
+        UserrModel::where('id',$id)->update($values);
+        return redirect()->route('userr')->with('pesan', 'Data berhasil ditambahkan!');
+    }
+
+    public function add_userr()
+    {
+        $userr = UserrModel::all();
+        return view('inside.v_userr', compact('userr'));
+    }
+
+    public function insert(Request $request)
+    {
+        $userr = UserrModel::find($request->id);
+        Request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'nik' => 'required|unique:pendaftaran|min:16',
+            'instansi' => 'required',
+            'no_telp' => 'min:12',
+            'berkas' => "required|mimes:pdf|max:10000",
+            'status' => "required",
+            'level' => "required",
+            'penempatans' => 'required',
+            'divisis' => 'required',
+        ],[
+            'name.required'=>' name wajib diisi !!',
+            'email.required'=>' email wajib diisi !!',
+            'nik.required' => 'nik wajib diisi !!',
+            'instansi.required' => 'instansi wajib diisi !!',
+            'no_telp.required' => 'no telpon wajib diisi !!',
+            'berkas.required' => 'berkas wajib diisi !!',
+            'status.required' => 'status wajib diisi !!',
+            'level.required' => 'level wajib diisi !!',
+            'penempatans.required' => 'penempatan wajib diisi !!',
+            'divisis.required' => 'divisi wajib diisi !!',
+        ]);
+
+        $userr = [
+            'name' => Request()->name,
+            'email' => Request()->email,
+            'nik' => Request()->nik,
+            'instansi' => Request()->instansi,
+            'no_telp' => Request()->no_telp,
+            'berkas' => Request()->berkas,
+            'status' => Request()->status,
+            'level' => Request()->level,
+            'penempatans' => Request()->penempatans,
+            'divisis' => Request()->divisis,
+
+
+        ];
+        $this->UserrModel->addData($userr);
+        return redirect()->route('userr')->with('pesan', 'Data berhasil ditambahkan!');
+    }
+
+    public function edit(Request $request)
+    {
+        $userr = UserrModel::find($request->id);
+        // dd($request->all());
+        $userr->update($request->all());
+        return redirect()->route('userr')->with('pesan', 'Data berhasil diupdate!');
+    }
+
+    public function delete($id)
+    {
+        $userr = UserrModel::find($id);
+        $userr->delete();
+        return redirect()->route('userr');
+    }
+}

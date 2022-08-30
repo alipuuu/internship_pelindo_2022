@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\PendaftaranModel;
+use Illuminate\Support\Facades\Auth;
+
+class EditPendaftaranController extends Controller
+{
+    public function __construct()
+    {   $this->PendaftaranModel = new PendaftaranModel();
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $editdaftar =PendaftaranModel::where('user_id', Auth::user()->id)->firstOrFail();
+        $daftar = PendaftaranModel::where('status','1')->get();
+        $pendaftaran = PendaftaranModel::with('penempatan')->get();
+    	return view('inside.v_edit_pendaftaran',compact('editdaftar','pendaftaran','daftar'));
+    }
+
+    public function edit_pendaftaran($id)
+    {
+
+        $editdaftar = PendaftaranModel::all();
+        return view('inside.v_edit_pendaftaran', compact('editdaftar'));
+    }
+
+    public function update_pendaftarann(Request $request, $id)
+    {
+        $editdaftar = PendaftaranModel::find($id);
+        $editdaftar->nik = $request->nik;
+        $editdaftar->no_telp = $request->no_telp;
+        $editdaftar->berkas = $request->berkas;
+        $editdaftar->penempatans = $request->penempatans;
+        $editdaftar->divisis = $request->divisis;
+        $editdaftar->update();
+        // (dd($editdaftar));
+        return redirect()->route('editdaftar',compact('editdaftar'))->with('pesan','data berhasil di update!!!');
+    }
+}

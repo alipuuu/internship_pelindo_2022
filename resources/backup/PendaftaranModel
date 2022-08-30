@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+class PendaftaranModel extends Model
+{
+    use HasFactory;
+    protected $guarded = [];
+    protected $table = "pendaftaran";
+    protected $primaryKey = "id"; // -> primary keynya apa ?
+    protected $fillable =['user_id','nik','instansi','no_telp','berkas','penempatans','divisis'];
+
+    public function allData()
+    {
+       return DB::table('pendaftaran')->get();
+    }
+
+    public function addData($data)
+    {
+        DB::table('pendaftaran')->insert($data);
+    }
+
+    public function editData($id , $data)
+    {
+        DB::table('pendaftaran')
+            ->where('id',$id)
+            ->update($data);
+    }
+
+    public function deleteData($id)
+    {
+        DB::table('pendaftaran')
+            ->where('id',$id)
+            ->delete();
+    }
+
+    public function penempatan()
+    {
+        return $this->hasOne(PenempatanModel::class,'id','penempatans');
+    }
+
+    public function divisi()
+    {
+        return $this->hasOne(DivisiModel::class,'id','divisis');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+
+    public function datapribadi()
+    {
+        return $this->hasOne(PendaftaranModel::class,'id','nik','instansi','no_telp','berkas');
+    }
+
+}

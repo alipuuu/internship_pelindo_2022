@@ -1,0 +1,115 @@
+@extends('layout.v_template')
+@section('title', 'Edit Profile')
+@section('content')
+<!-- This is what you need -->
+<script src="dist/sweetalert.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="dist/sweetalert.css">
+<div class="row">
+    {{-- @foreach ($pendaftaran as $data ) --}}
+    <div class="col-lg-12 col-ml-12">
+        <div class="row">
+            <!-- Textual inputs start -->
+            <div class="col-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('profile.update')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method("put")
+                        <div class="form-group">
+                            <label for="name" class="col-form-label"><b>Nama Lengkap (Sesuai KTP)</b></label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', Auth::user()->name) }}" >
+                            <div class="text-danger">
+                                @error('name')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nik" class="col-form-label"><b>NIK</b></label>
+                            <input type="text" name="nik" id="nik" class="form-control" value="{{old('nik', Auth::user()->nik)}}" >
+                            <div class="text-danger">
+                                @error('nik')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label"><b>Sekolah / Kampus</b></label>
+                            {{-- <input type="text" name="instansi" placeholder="Politeknik Elektronika Negeri Surabaya" id="instansi" class="form-control"  value="{{$pendaftaran->instansi}}" > --}}
+                            <input type="text" name="instansi" id="instansi" class="form-control"  value="{{old('instansi', Auth::user()->instansi)}}" >
+                            <div class="text-danger">
+                                @error('instansi')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label"><b>Nomor Handphone</b></label>
+                            {{-- <input type="text" name="no_telp" placeholder="0856 4636 6699" id="no_telp" class="form-control"  value="{{$pendaftaran->no_telp}}" > --}}
+                            <input type="text" name="no_telp" id="no_telp" class="form-control"  value="{{old('no_telp', Auth::user()->no_telp)}}" >
+                            <div class="text-danger">
+                                @error('no_telp')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label"><b>Email</b></label>
+                            {{-- <input type="text" name="email" placeholder="alifarmansya@gmail.com" id="email" class="form-control"  value="{{$pendaftaran->email}}" > --}}
+                            <input type="text" name="email" id="email" class="form-control"  value="{{old('email', Auth::user()->email)}}" >
+                            <div class="text-danger">
+                                @error('email')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="berkas" class="col-form-label"><b>Berkas</b></label>
+                            <input type="file" name="berkas" id="berkas" class="form-control" value="{{old('berkas', Auth::user()->berkas)}}" >
+                            <div class="text-danger">
+                                @error('berkas')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group" hidden>
+                            <label for="penempatans" class="col-form-label"><b>Penempatan</b></label>
+                            <input type="text" name="penempatans" id="penempatans" class="form-control"  value="belum">
+                            <div class="text-danger">
+                                @error('penempatans')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group" hidden>
+                            <label for="divisis" class="col-form-label"><b>Divisi</b></label>
+                            <input type="text" name="divisis" id="divisis" class="form-control"  value="belum">
+                            <div class="text-danger">
+                                @error('divisis')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-5">
+                            <button class="btn btn-primary btn-lg btn-block sweet-3" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-3']);" type="submit">Update Data</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Textual inputs end -->
+        </div>
+    </div>
+    {{-- @endforeach --}}
+</div>
+
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script>
+document.querySelector('.sweet-3').onclick = function(){
+swal("Data Saved!", "You clicked the button!", "success");
+};
+</script>
+@endsection

@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+<script src="https://code.jquery.com/jquery-3.5.1.js"> --}}
 </head>
 
 <body>
@@ -88,9 +90,10 @@
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
                             {{-- <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar"> --}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}
                                 <i class="fa fa-angle-down"></i>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <br>
                                 <span class="badge badge-success">
                                 @auth
@@ -108,7 +111,8 @@
                                 </span>
                             </h4>
                             <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="/change_password"> <span class="ti-user"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Change Password</a>
+                                <a class="dropdown-item" href="/change_password"> <span class="ti-pencil"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Change Password</a>
+                                <a class="dropdown-item" href="/datapribadi"> <span class="ti-user"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Edit Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <span class="ti-shift-right"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;{{ __('Logout') }}
                                 </a>
@@ -160,64 +164,65 @@
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
     <script>
-window.addEventListener("load", () => {
-  clock();
-  function clock() {
-    const today = new Date();
+    window.addEventListener("load", () => {
+    clock();
+    function clock() {
+        const today = new Date();
 
-    // get time components
-    const hours = today.getHours();
-    const minutes = today.getMinutes();
-    const seconds = today.getSeconds();
+        // get time components
+        const hours = today.getHours();
+        const minutes = today.getMinutes();
+        const seconds = today.getSeconds();
 
-    //add '0' to hour, minute & second when they are less 10
-    const hour = hours < 10 ? "0" + hours : hours;
-    const minute = minutes < 10 ? "0" + minutes : minutes;
-    const second = seconds < 10 ? "0" + seconds : seconds;
+        //add '0' to hour, minute & second when they are less 10
+        const hour = hours < 10 ? "0" + hours : hours;
+        const minute = minutes < 10 ? "0" + minutes : minutes;
+        const second = seconds < 10 ? "0" + seconds : seconds;
 
-    //make clock a 12-hour time clock
-    const hourTime = hour > 12 ? hour - 12 : hour;
+        //make clock a 12-hour time clock
+        const hourTime = hour > 12 ? hour - 12 : hour;
 
-    // if (hour === 0) {
-    //   hour = 12;
-    // }
-    //assigning 'am' or 'pm' to indicate time of the day
-    const ampm = hour < 12 ? "AM" : "PM";
+        // if (hour === 0) {
+        //   hour = 12;
+        // }
+        //assigning 'am' or 'pm' to indicate time of the day
+        const ampm = hour < 12 ? "AM" : "PM";
 
-    // get date components
-    const month = today.getMonth();
-    const year = today.getFullYear();
-    const day = today.getDate();
+        // get date components
+        const month = today.getMonth();
+        const year = today.getFullYear();
+        const day = today.getDate();
 
-    //declaring a list of all months in  a year
-    const monthList = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
+        //declaring a list of all months in  a year
+        const monthList = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+        ];
 
-    //get current date and time
-    const date = day + " " + monthList[month] + " " + year;
-    const time = hourTime + " " + ":" + " " + minute + " " + ":" + " " + second + " " + ampm;
+        //get current date and time
+        const date = day + " " + monthList[month] + " " + year;
+        const time = hourTime + " " + ":" + " " + minute + " " + ":" + " " + second + " " + ampm;
 
-    //combine current date and time
-    const dateTime = date + " - " + time;
+        //combine current date and time
+        const dateTime = date + " - " + time;
 
-    //print current date and time to the DOM
-    document.getElementById("date-time").innerHTML = dateTime;
-    setTimeout(clock, 1000);
-  }
-});
+        //print current date and time to the DOM
+        document.getElementById("date-time").innerHTML = dateTime;
+        setTimeout(clock, 1000);
+    }
+    });
     </script>
     <!-- Code injected by live-server -->
 <script type="text/javascript">
@@ -265,14 +270,35 @@ else {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-<!-- page script -->
 
+<!-- page script -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('#table-datatables').DataTable({
             dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-            order: [[ 3, "desc" ]]
+            buttons: ['excel', 'print'],
+            order: [[ 3, "desc" ]],
+        });
+    });
+    $(document).ready(function () {
+        $('#table-datatables-2').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['excel', 'print'],
+            order: [[ 3, "desc" ]],
+        });
+    });
+    $(document).ready(function () {
+        $('#table-datatables-3').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['excel', 'print'],
+            order: [[ 3, "desc" ]],
+        });
+    });
+    $(document).ready(function () {
+        $('#table-datatables-4').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['excel', 'print'],
+            order: [[ 3, "desc" ]],
         });
     });
 </script>

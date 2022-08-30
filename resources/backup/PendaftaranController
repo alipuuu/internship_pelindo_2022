@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\UserrModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
+class PendaftaranController extends Controller
+{
+    public function __construct()
+    {
+        $this->UserrModel = new UserrModel();
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+    	$pendaftaran = UserrModel::all();
+        return view('inside.v_pendaftaran',compact('pendaftaran'));
+    }
+
+    public function add_pendaftaran()
+    {
+        $pendaftaran = UserrModel::all();
+        return view('inside.v_pendaftaran', compact('pendaftaran'));
+    }
+
+
+    public function edit_pendaftaran($id)
+    {
+        $pendaftaran = UserrModel::all();
+        return view('inside.v_edit_pendaftaran', compact('pendaftaran'));
+    }
+
+    public function insert_pendaftaran(Request $request)
+    {
+        $pendaftaran = UserrModel::find($request->id);
+        Request()->validate([
+            'name' => 'required',
+            'nik' => 'required|unique:users,nik|min:16|max:16',
+            'instansi' => 'required',
+            'no_telp' => 'min:11|max:12',
+            'berkas' => "required|mimes:pdf|max:10000",
+            'penempatans' => 'required',
+            'divisis' => 'required',
+            // "file" => "required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000"
+        ],[
+            'name.required'=>' Nama wajib diisi !!',
+            'nik.required'=>' NIK wajib diisi !!',
+            'instansi.required'=>' Sekolah / Kampus wajib diisi !!',
+            'no_telp.required' => 'no_telp wajib diisi !!',
+            'berkas.required' => 'berkas wajib diisi !!',
+            'penempatans.required' => 'penempatan wajib diisi !!',
+            'divisis.required' => 'divisi wajib diisi !!',
+        ]);
+
+        if(Request()->hasFile('berkas')) {
+        $file = Request()->file('berkas');
+        $fileName = Request()->nik.'.'.$file->extension();//errornya di sini
+        $file->move(public_path('berkas'), $fileName);
+        $pendaftaran = [
+            'name' => Request()->name,
+            'nik' => Request()->nik,
+            'instansi' => Request()->instansi,
+            'no_telp' => Request()->no_telp,
+            'berkas' => $fileName,
+            'penempatans' => Request()->penempatans,
+            'divisis' => Request()->divisis,
+        ];
+    }   if($pendaftaran){
+            Session::flash('status','success');
+            Session::flash('message','DATA ANDA SUKSES TERKIRIM');
+        }
+        $this->UserrModel->addData($pendaftaran);
+        // dd($pendaftaran);
+        return redirect()->route('dashboard_user',compact('pendaftaran'));
+    }
+
+    // public function update_pendaftaran(Request $request, $id)
+    // {
+    //     $pendaftaran = UserrModel::find($id);
+    //     $pendaftaran->update($request->all());
+    //     // dd($server);
+    //     return redirect()->route('pendaftaran')->with('pesan','data berhasil di update!!!');
+    // }
+
+    // public function update_pendaftarann(Request $request, $id)
+    // {
+    //     $pendaftaran = UserrModel::find($id);
+    //     $pendaftaran->nik = $request->nik;
+    //     $pendaftaran->no_telp = $request->no_telp;
+    //     $pendaftaran->berkas = $request->berkas;
+    //     $pendaftaran->penempatans = $request->penempatans;
+    //     $pendaftaran->divisis = $request->divisis;
+    //     $pendaftaran->update();
+    //     // (dd($editdaftar));
+    //     return redirect()->route('pendaftaran',compact('pendaftaran'))->with('pesan','data berhasil di update!!!');
+    // }
+}

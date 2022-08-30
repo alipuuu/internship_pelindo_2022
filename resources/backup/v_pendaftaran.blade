@@ -1,0 +1,153 @@
+@extends('layout.v_template')
+@section('title', 'Form Pendaftaran')
+@section('content')
+<!-- This is what you need -->
+<script src="dist/sweetalert.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="dist/sweetalert.css">
+
+<div class="row">
+    <div class="col-lg-6 col-ml-12">
+        <div class="row">
+            <!-- Textual inputs start -->
+            <div class="col-12 mt-5">
+                @if (Session::has('status'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{Session::get('message')}}</strong>
+                </div>
+                @endif
+                {{-- <a href="{{ route('edit_pendaftaran', $editdaftar->id) }}" class="btn btn-info btn-xs mb-3">Edit Pendaftaran User</a> --}}
+                {{-- <a href="/edit_pendaftaran"><i class="ti-pencil"></i><span>Edit Pendaftaran User</span></a> --}}
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/insert_pendaftaran/" method="POST" enctype="multipart/form-data">
+                            @csrf
+                        @method("POST")
+                        <div class="form-group">
+                            <label for="nama" class="col-form-label"><b>Nama</b></label>
+                            <input type="text" name="nama" id="nama" class="form-control" value="{{ Auth::user()->name }}" readonly>
+                            <div class="text-danger">
+                                @error('nama')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label"><b>Email</b></label>
+                            <input type="text" name="email" id="email" class="form-control" value="{{ Auth::user()->email }}" readonly>
+                            <div class="text-danger">
+                                @error('email')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nik" class="col-form-label"><b>NIK</b></label>
+                            <input type="text" name="nik" id="nik" class="form-control" value="{{old('nik')}}">
+                            <div class="text-danger">
+                                @error('nik')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label"><b>Instansi</b></label>
+                            <input type="text" name="instansi" id="instansi" class="form-control"  value="{{old('instansi')}}">
+                            <div class="text-danger">
+                                @error('instansi')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label"><b>No Telp</b></label>
+                            <input type="text" name="no_telp" id="no_telp" class="form-control"  value="{{old('no_telp')}}">
+                            <div class="text-danger">
+                                @error('no_telp')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="berkas" class="col-form-label"><b>Berkas</b></label>
+                            <input type="file" name="berkas" id="berkas" class="form-control" >
+                            <div class="text-danger">
+                                @error('berkas')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="penempatans" class="col-form-label"><b>Penempatan</b></label>
+                            <input type="text" name="penempatans" id="penempatans" class="form-control"  value="{{ Auth::user()->penempatans}}" readonly>
+                            <div class="text-danger">
+                                @error('penempatans')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="divisis" class="col-form-label"><b>Divisi</b></label>
+                            <input type="text" name="divisis" id="divisis" class="form-control"  value="{{ Auth::user()->divisis}}" readonly>
+                            <div class="text-danger">
+                                @error('divisis')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="divisis" class="col-form-label"><b>Jenis Magang</b></label>
+                            <input type="text" name="divisis" id="divisis" class="form-control"  value="{{ Auth::user()->jenis_magang}}" readonly>
+                            <div class="text-danger">
+                                @error('divisis')
+                                    {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-5">
+                            <button class="btn btn-primary btn-lg btn-block sweet-3" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-3']);" type="submit">Submit</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Textual inputs end -->
+        </div>
+    </div>
+    <div class="col-lg-6 col-ml-12">
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <h2>CONTOH BERKAS</h2>
+                <object
+                    data="https://example.com/test.pdf#page=2"
+                    type="application/pdf"
+                    width="850px"
+                    height="750px"
+                >
+                    <iframe
+                        src="https://web-preview.pspdfkit.com/showcases/8.pdf#page=2"
+                        width="850px"
+                        height="750px"
+                        style="border: none;"
+                    >
+                        <p>
+                            Your browser does not support PDFs.
+                            <a href="https://example.com/test.pdf">Download the PDF</a>
+                            .
+                        </p>
+                    </iframe>
+                </object>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script>
+document.querySelector('.sweet-3').onclick = function(){
+swal("You clicked the button!", "success");
+};
+</script>
+@endsection
