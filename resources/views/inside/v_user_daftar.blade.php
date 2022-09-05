@@ -84,7 +84,7 @@
                                                             @foreach ($tempat as $data )
                                                             @if ($data->id_penempatan == $data->lokasi)
                                                             <option value="{{$data->id_penempatan}}">{{$data->lokasi}}></option>
-                                                            @else ($data->penempatans == $data->lokasi)
+                                                            @else
                                                             <option value="{{ $data->id_penempatan }}">{{ $data->lokasi}}</option>
                                                             @endif
                                                             @endforeach
@@ -102,7 +102,7 @@
                                                             @foreach ($depart as $data )
                                                             @if ($data->id_divisi == $data->departemen)
                                                             <option value="{{$data->id_divisi}}">{{$data->departemen}} </option>
-                                                            @else ($data->divisis == $data->departemen)
+                                                            @else
                                                             <option value="{{ $data->id_divisi }}">{{ $data->departemen}}</option>
                                                             @endif
                                                             @endforeach
@@ -120,7 +120,7 @@
                                                             @foreach ($magang as $data )
                                                             @if ($data->id_magang == $data->id_magang)
                                                             <option value="{{$data->id_magang}}">{{$data->jenis_magang}} </option>
-                                                            @else ($data->jenis_magangs == $data->departemen)
+                                                            @else
                                                             <option value="{{ $data->id_magang }}">{{ $data->jenis_magang}}</option>
                                                             @endif
                                                             @endforeach

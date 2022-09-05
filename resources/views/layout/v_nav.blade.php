@@ -28,6 +28,7 @@
 @elseif (auth()->user()->level==2)
 
 <li><a href="/dashboard_user"><i class="ti-dashboard"></i><span>Dashboard User</span></a></li>
+<li><a href="/user_daftar"><i class="ti-receipt"></i><span>Data Pendaftar</span></a></li>
 <li><a href="/datapribadi"><i class="ti-user"></i><span>Informasi Data Pribadi</span></a></li>
 <li>
 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-calendar"></i><span>Form Absensi</span></a>

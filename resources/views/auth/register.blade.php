@@ -143,7 +143,7 @@
                         </div>
                         <div class="form-gp" hidden>
                             <label for="id_penempatan">Penempatan</label>
-                            <input type="text" id="id_penempatan"class="form-control" name="id_penempatan"  value="-" required autocomplete="id_penempatan" autofocus>
+                            <input type="text" id="id_penempatan"class="form-control" name="id_penempatan"  value="Belum Ditentukan" required autocomplete="id_penempatan" autofocus>
                             @error('id_penempatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="form-gp" hidden>
                             <label for="id_divisi">Divisi</label>
-                            <input type="text" id="id_divisi" class="form-control" name="id_divisi" value="-" required autocomplete="id_divisi" autofocus>
+                            <input type="text" id="id_divisi" class="form-control" name="id_divisi" value="Belum Ditentukan" required autocomplete="id_divisi" autofocus>
                             @error('id_divisi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="form-gp" hidden>
                             <label for="id_magang">Jenis Magang</label>
-                            <input type="text" id="id_magang"class="form-control" name="id_magang" value="-" required autocomplete="id_magang" autofocus >
+                            <input type="text" id="id_magang"class="form-control" name="id_magang" value="Belum Ditentukan" required autocomplete="id_magang" autofocus >
                             @error('id_magang')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

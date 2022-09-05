@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class PenempatanModel extends Model
 {
-    use HasFactory;
     protected $guarded = [];
     protected $table = "penempatan";
-    protected $primaryKey = "id_penempatan"; // -> primary keynya apa ?
+    protected $primaryKey = "id_penempatan";
     protected $fillable =['lokasi','alamat'];
 
     public function allData()

@@ -51,9 +51,7 @@ class InstansiController extends Controller
             Session::flash('message','DATA ANDA SUKSES TERKIRIM');
         }
         $this->InstansiModel->addData($instansi);
-        // dd($pendaftaran);
         return redirect()->route('instansi',compact('instansi'));
-        // return view('inside.v_instansi', compact('instansi'));
     }
 
     public function update_instansi(Request $request, $id)

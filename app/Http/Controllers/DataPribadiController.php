@@ -19,8 +19,13 @@ class DataPribadiController extends Controller
 
     public function index()
     {
+        $users = $this->UserrModel->semua();
+        $pendaftaran = UserrModel::with(['penempatan','user','magang'])->get();
+        $tempat = PenempatanModel::all();
+        $depart = DivisiModel::all();
+        $magang = MagangModel::all();
         $user = UserrModel::where('id_users', Auth::user()->id_users)->with(['magang','divisi','penempatan'])->first();
-        return view('inside.v_datapribadi', compact('user'));
+        return view('inside.v_datapribadi', compact('users','pendaftaran','tempat','depart','magang','user'));
     }
 
     public function detail_datapribadi($id)
@@ -31,10 +36,7 @@ class DataPribadiController extends Controller
 
     public function update_datapribadi(Request $request, $id)
     {
-        // $id = (int) $id;
-        // dd(gettype($id));
         $datapribadi = UserrModel::find($id);
-        // dd($id);
         $datapribadi->update($request->all());
         $request->validate([
             'nik' => 'required',
@@ -53,8 +55,6 @@ class DataPribadiController extends Controller
             'id_divisi.required' => 'divisi wajib diisi !!',
             'id_magang.required' => 'jenis magang wajib diisi !!',
         ]);
-        // dd($datapribadi);
-        // $this->UserrModel->editData($datapribadi);
         return redirect()->route('datapribadi');
     }
 }

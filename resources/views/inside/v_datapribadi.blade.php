@@ -65,50 +65,62 @@
             {{-- @endforeach --}}
             <table class="table">
             <tr>
-            <th width="150px">Nama Lengkap</th>
-            <th width="50px">:</th>
+            <th>Nama Lengkap</th>
+            <th>:</th>
             <th>{{ Auth::user()->name }}</th>
             </tr>
             <tr>
-            <th width="150px">Email</th>
-            <th width="50px">:</th>
+            <th>Email</th>
+            <th>:</th>
             <th>{{ Auth::user()->email }}</th>
             </tr>
             <tr>
-            <th width="150px">NIK</th>
-            <th width="50px">:</th>
+            <th>NIK</th>
+            <th>:</th>
             <th>{{ Auth::user()->nik }}</th>
             </tr>
             <tr>
-            <th width="150px">Instansi</th>
-            <th width="50px">:</th>
+            <th>Instansi</th>
+            <th>:</th>
             <th>{{ Auth::user()->instansi}}</th>
             </tr>
             <tr>
-            <th width="150px">no Telepon</th>
-            <th width="50px">:</th>
+            <th>no Telepon</th>
+            <th>:</th>
             <th>{{ Auth::user()->no_telp }}</th>
             </tr>
             <tr>
-            <th width="150px">Berkas</th>
-            <th width="50px">:</th>
+            <th>Berkas</th>
+            <th>:</th>
             <th>{{ Auth::user()->berkas }}</th>
             </tr>
             <tr>
             {{--  --}}
-            <th width="150px">Penempatan Lokasi Magang</th>
-            <th width="50px">:</th>
-            <th>{{ $user->penempatan->lokasi }}</th>
+            <th >Penempatan Lokasi Magang</th>
+            <th >:</th>
+                @if (Auth::user()->id_penempatan == Auth::user()->lokasi)
+                    <th> Belum Ditentukan oleh Admin</th>
+                @elseif ($user->penempatan->lokasi == $user->penempatan->lokasi)
+                    <th>{{ $user->penempatan->lokasi }}</th>
+                @endif
             </tr>
             <tr>
-            <th width="150px">Divisi Departemen</th>
-            <th width="50px">:</th>
-            <th>{{ $user->divisi->departemen }}</th>
+            <th>Divisi Departemen</th>
+            <th>:</th>
+                @if (Auth::user()->id_divisi == Auth::user()->departemen)
+                    <th> Belum Ditentukan oleh Admin</th>
+                @elseif ($user->divisi->departemen == $user->divisi->departemen)
+                    <th>{{ $user->divisi->departemen }}</th>
+                @endif
             </tr>
             <tr>
-            <th width="150px">Jenis Magang</th>
-            <th width="50px">:</th>
-            <th>{{ $user->magang->jenis_magang }}</th>
+            <th>Jenis Magang</th>
+            <th>:</th>
+                @if (Auth::user()->id_magang == Auth::user()->jenis_magang)
+                    <th> Belum Ditentukan oleh Admin</th>
+                @elseif ($user->magang->jenis_magang == $user->magang->jenis_magang)
+                    <th>{{ $user->magang->jenis_magang }}</th>
+                @endif
             {{--  --}}
             </tr>
             </table>

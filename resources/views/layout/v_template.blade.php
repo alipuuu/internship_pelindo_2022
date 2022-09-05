@@ -92,6 +92,16 @@
                             {{-- <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar"> --}}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/change_password"> <span class="ti-pencil"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Change Password</a>
+                                <a class="dropdown-item" href="/datapribadi"> <span class="ti-user"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Edit Profile</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <span class="ti-shift-right"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;{{ __('Logout') }}
+                                </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
                                 <i class="fa fa-angle-down"></i>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <br>
@@ -110,16 +120,6 @@
                                 @endauth
                                 </span>
                             </h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/change_password"> <span class="ti-pencil"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Change Password</a>
-                                <a class="dropdown-item" href="/datapribadi"> <span class="ti-user"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;Edit Profile</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <span class="ti-shift-right"></span><span class="icon-name">&nbsp;&nbsp;&nbsp;{{ __('Logout') }}
-                                </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,7 +277,8 @@ else {
         $('#table-datatables').DataTable({
             dom: 'Bfrtip',
             buttons: ['excel', 'print'],
-            order: [[ 3, "desc" ]],
+            order: [[ 1, "asc" ]],
+            orderable: true,
         });
     });
 </script>

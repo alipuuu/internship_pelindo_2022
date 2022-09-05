@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class DivisiModel extends Model
 {
-    use HasFactory;
     protected $guarded = [];
     protected $table = "divisi";
-    protected $primaryKey = "id_divisi"; // -> primary keynya apa ?
+    protected $primaryKey = "id_divisi";
     protected $fillable =['divisi','departemen'];
 
     public function allData()

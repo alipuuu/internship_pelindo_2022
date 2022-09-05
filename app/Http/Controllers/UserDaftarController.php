@@ -22,33 +22,22 @@ class UserDaftarController extends Controller
 
     public function index()
     {
-        // dd('');
-        $users = UserrModel::orderBy('id_users', 'ASC')->get();
-        $users = $this->UserrModel->semua();  //pdhl ws tak orderBy tapi kok gaiso hiks
-        // dd($users);
+        $users = $this->UserrModel->semua();
         $daftar = UserrModel::where('status','1')->get();
-        $editdaftar = UserrModel::all();
-        $pendaftaran = UserrModel::with(['penempatan','user','magang'])->get();
         $tempat = PenempatanModel::all();
         $depart = DivisiModel::all();
         $magang = MagangModel::all();
-    	return view('inside.v_user_daftar',compact('users','pendaftaran','daftar','tempat','depart', 'editdaftar','magang'));
+    	return view('inside.v_user_daftar',compact('users','daftar','tempat','depart','magang'));
     }
 
     function status_update($id)
     {
-        // dd();
-        //get product status with the help of product ID
         $pendaftaran = UserrModel::select('status')->where('id_users','=',$id)->first();
-        // dd($pendaftaran);
-        //Check user status
         if($pendaftaran->status == '1'){
             $status = '0';
         }else{
             $status = '1';
         }
-
-        //update product status
         $values = array('status' => $status );
         UserrModel::where('id_users',$id)->update($values);
         return redirect()->route('user_daftar')->with('pesan', 'Data berhasil ditambahkan!');

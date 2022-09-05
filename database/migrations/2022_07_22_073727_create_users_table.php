@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('berkas')->default('-');
             $table->string('status')->default('0');
             $table->string('level')->default('2');
-            $table->string('id_penempatan')->default('-');
-            $table->string('id_divisi')->default('-');
-            $table->string('id_magang')->default('-');
+            $table->string('id_penempatan')->nullable();
+            $table->string('id_divisi')->nullable();
+            $table->string('id_magang')->nullable();
             $table->timestamps();
         });
     }

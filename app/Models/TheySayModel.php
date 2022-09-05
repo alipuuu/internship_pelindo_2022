@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class TheySayModel extends Model
 {
-    use HasFactory;
     protected $guarded = [];
     protected $table = "theysay";
-    protected $primaryKey = "id"; // -> primary keynya apa ?
+    protected $primaryKey = "id";
     protected $fillable =['name','email','message'];
 
     public function allData()

@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class InstansiModel extends Model
 {
-    use HasFactory;
     protected $guarded = [];
     protected $table = "instansi";
-    protected $primaryKey = "id_instansi"; // -> primary keynya apa ?
+    protected $primaryKey = "id_instansi";
     protected $fillable =['instansi','alamat','no_telp','email'];
 
     public function allData()

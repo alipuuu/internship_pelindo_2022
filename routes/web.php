@@ -20,16 +20,7 @@ use App\Http\Controllers\FinalPresentationController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserFinalPresentationController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 // php artisan serve --host 10.1.237.86 --port 8000
 Route::get('/', function () {
     return view('index');
@@ -103,6 +94,17 @@ Route::post('/insert_tidakhadir', [TidakHadirController::class,'insert_tidakhadi
 // final presentation
 Route::get('/final_presentation', [FinalPresentationController::class,'index'])->name('final_presentation');
 Route::get('/user_final_presentation', [UserFinalPresentationController::class,'index'])->name('user_final_presentation');
+
+
+
+
+
+
+
+
+
+
+
 
 
 

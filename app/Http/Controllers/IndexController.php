@@ -60,8 +60,6 @@ class IndexController extends Controller
             Session::flash('message','DATA ANDA SUKSES TERKIRIM');
         }
         $this->TheySayModel->addData($theysay);
-        // dd($theysay);
-        // return redirect()->route('index',compact('theysay'));
         return view('index', compact('theysay'));
     }
 }

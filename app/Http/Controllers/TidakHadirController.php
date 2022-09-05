@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\PendaftaranModel;
-
+use App\Models\UserrModel;
 use Illuminate\Http\Request;
 
 class TidakHadirController extends Controller
@@ -14,7 +13,7 @@ class TidakHadirController extends Controller
 
     public function index()
     {
-        $daftar = PendaftaranModel::where('status','1')->get();
+        $daftar = UserrModel::where('status','1')->get();
     	return view('inside.v_tidakhadir', compact('daftar'));
     }
 }
