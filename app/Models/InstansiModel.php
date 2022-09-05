@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 class InstansiModel extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     protected $table = "instansi";
-    protected $primaryKey = "id"; // -> primary keynya apa ?
+    protected $primaryKey = "id_instansi"; // -> primary keynya apa ?
     protected $fillable =['instansi','alamat','no_telp','email'];
 
     public function allData()
@@ -26,14 +27,14 @@ class InstansiModel extends Model
     public function editData($id , $data)
     {
         DB::table('instansi')
-            ->where('id',$id)
+            ->where('id_instansi',$id)
             ->update($data);
     }
 
     public function deleteData($id)
     {
         DB::table('instansi')
-            ->where('id',$id)
+            ->where('id_instansi',$id)
             ->delete();
     }
 }

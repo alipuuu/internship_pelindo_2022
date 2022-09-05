@@ -14,7 +14,7 @@ class CreateMagangTable extends Migration
     public function up()
     {
         Schema::create('magang', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_magang');
             $table->string('jenis_magang');
             $table->string('ket');
             $table->timestamps();

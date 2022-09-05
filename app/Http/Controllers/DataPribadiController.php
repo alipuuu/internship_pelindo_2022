@@ -7,6 +7,7 @@ use App\Models\MagangModel;
 use App\Models\PenempatanModel;
 use App\Models\UserrModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataPribadiController extends Controller
 {
@@ -18,11 +19,8 @@ class DataPribadiController extends Controller
 
     public function index()
     {
-        $magang = MagangModel::all();
-        $divisi =DivisiModel::all();
-        $penempatan = PenempatanModel::all();
-        $datapribadi = auth()->user();
-        return view('inside.v_datapribadi', compact('datapribadi','magang','divisi',));
+        $user = UserrModel::where('id_users', Auth::user()->id_users)->with(['magang','divisi','penempatan'])->first();
+        return view('inside.v_datapribadi', compact('user'));
     }
 
     public function detail_datapribadi($id)
@@ -31,36 +29,29 @@ class DataPribadiController extends Controller
         return view('inside.v_datapribadi', compact('datapribadi'));
     }
 
-    public function edit_datapribadi($id)
-    {
-        $datapribadi = UserrModel::find($id);
-        dd($datapribadi);
-        // return view('inside.v_datapribadi', compact('datapribadi'));
-    }
-
     public function update_datapribadi(Request $request, $id)
     {
-        $id = (int) $id;
+        // $id = (int) $id;
         // dd(gettype($id));
         $datapribadi = UserrModel::find($id);
         // dd($id);
         $datapribadi->update($request->all());
         $request->validate([
-            'nik' => 'required|min:16|unique:users,nik,'.$id,
+            'nik' => 'required',
             'instansi' => 'required',
             'no_telp' => 'min:11|max:12',
             'berkas' => "required|mimes:pdf|max:10000",
-            'penempatans' => 'required',
-            'divisis' => 'required',
-            'jenis_magang' => 'required',
+            'id_penempatan' => 'required',
+            'id_divisi' => 'required',
+            'id_magang' => 'required',
         ],[
             'nik.required'=>' NIK wajib diisi !!',
             'instansi.required'=>' Sekolah / Kampus wajib diisi !!',
             'no_telp.required' => 'no_telp wajib diisi !!',
             'berkas.required' => 'berkas wajib diisi !!',
-            'penempatans.required' => 'penempatan wajib diisi !!',
-            'divisis.required' => 'divisi wajib diisi !!',
-            'jenis_magang.required' => 'jenis magang wajib diisi !!',
+            'id_penempatan.required' => 'penempatan wajib diisi !!',
+            'id_divisi.required' => 'divisi wajib diisi !!',
+            'id_magang.required' => 'jenis magang wajib diisi !!',
         ]);
         // dd($datapribadi);
         // $this->UserrModel->editData($datapribadi);

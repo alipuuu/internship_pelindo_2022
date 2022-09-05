@@ -17,7 +17,7 @@ class UserrModel extends Authenticatable
     public function editData($id , $data)
     {
         DB::table('users')
-            ->where('id',$id)
+            ->where('id_users',$id)
             ->update($data);
     }
 
@@ -28,43 +28,53 @@ class UserrModel extends Authenticatable
 
     protected $table = 'users';
     protected $guarded = [];
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_users';
     protected $fillable = [
     'name',
-    'magang_id',
     'email',
     'password',
-    'password_confirmation','nik',
+    'password_confirmation',
+    'nik',
     'instansi',
     'no_telp',
     'berkas',
-    'level',
     'status',
-    'penempatans',
-    'divisis'];
+    'level',
+    'id_penempatan',
+    'id_divisi',
+    'id_magang'];
 
     public function penempatan()
     {
-        return $this->hasOne(PenempatanModel::class,'id','penempatans');
+        return $this->hasOne(PenempatanModel::class,'id_penempatan','id_penempatan');
     }
 
     public function divisi()
     {
-        return $this->hasOne(DivisiModel::class,'id','divisis');
+        return $this->hasOne(DivisiModel::class,'id_divisi','id_divisi');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->hasOne(User::class,'id_users','user_id');
     }
 
     public function datapribadi()
     {
-        return $this->hasOne(UserrModel::class,'id','nik','instansi','no_telp','berkas');
+        return $this->hasOne(UserrModel::class,'id_users','nik','instansi','no_telp','berkas');
     }
 
     public function magang()
     {
-        return $this->hasOne(MagangModel::class,'id','jenis_magangs');
+        return $this->hasOne(MagangModel::class,'id_magang','id_magang');
+    }
+
+    public function semua()
+    {
+        return DB::table('users')
+        ->leftJoin('magang','magang.id_magang', '=', 'users.id_magang')
+        ->leftJoin('penempatan','penempatan.id_penempatan', '=', 'users.id_penempatan')
+        ->leftJoin('divisi','divisi.id_divisi', '=', 'users.id_divisi')
+        ->get();
     }
 }

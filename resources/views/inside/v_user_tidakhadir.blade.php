@@ -11,16 +11,16 @@
                     <table id="table-datatables-2" class="table text-center">
                         <thead class="text-uppercase bg-danger">
                             <tr class="text-white">
-                                <th scope="col">Nama</th>
-                                <th scope="col">Alasan Ketidakhadiran</th>
-                                <th scope="col">Tanggal Awal Perizinan</th>
-                                <th scope="col">Tanggal Akhir Perizinan</th>
-                                <th scope="col">Bukti Izin Ketidakhadiran</th>
+                                <th>Nama</th>
+                                <th>Alasan Ketidakhadiran</th>
+                                <th>Tanggal Awal Perizinan</th>
+                                <th>Tanggal Akhir Perizinan</th>
+                                <th>Bukti Izin Ketidakhadiran</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Aditya Yudhistira</th>
+                                <th>Aditya Yudhistira</th>
                                 <td>Mules</td>
                                 <td>01/01/2022</td>
                                 <td>01/01/2022</td>

@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_users');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('email_verified_at')->nullable();
@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('berkas')->default('-');
             $table->string('status')->default('0');
             $table->string('level')->default('2');
-            $table->string('penempatans')->default('-');
-            $table->string('divisis')->default('-');
-            $table->string('jenis_magangs')->default('-');
+            $table->string('id_penempatan')->default('-');
+            $table->string('id_divisi')->default('-');
+            $table->string('id_magang')->default('-');
             $table->timestamps();
         });
     }

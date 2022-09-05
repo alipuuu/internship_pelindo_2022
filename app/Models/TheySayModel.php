@@ -6,35 +6,35 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class DivisiModel extends Model
+class TheySayModel extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = "divisi";
-    protected $primaryKey = "id_divisi"; // -> primary keynya apa ?
-    protected $fillable =['divisi','departemen'];
+    protected $table = "theysay";
+    protected $primaryKey = "id"; // -> primary keynya apa ?
+    protected $fillable =['name','email','message'];
 
     public function allData()
     {
-       return DB::table('divisi')->get();
+       return DB::table('theysay')->get();
     }
 
     public function addData($data)
     {
-        DB::table('divisi')->insert($data);
+        DB::table('theysay')->insert($data);
     }
 
     public function editData($id , $data)
     {
-        DB::table('divisi')
-            ->where('id_divisi',$id)
+        DB::table('theysay')
+            ->where('id',$id)
             ->update($data);
     }
 
     public function deleteData($id)
     {
-        DB::table('divisi')
-            ->where('id_divisi',$id)
+        DB::table('theysay')
+            ->where('id',$id)
             ->delete();
     }
 }

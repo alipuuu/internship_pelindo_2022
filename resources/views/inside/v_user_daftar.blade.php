@@ -38,45 +38,28 @@
                                     <td>{{ $data->nik }}</td>
                                     <td>{{ $data->instansi }}</td>
                                     <td>{{ $data->no_telp }}</td>
-                                    <td><a href="{{ $data->berkas }}"  target="_blank" download><span class="fa fa-download"></span><span class="icon-name"> {{ $data->berkas }}</a></span></td>
+                                    <td><a href="{{ $data->berkas }}" target="_blank" download><span class="fa fa-download"></span><span class="icon-name"> {{ $data->berkas }}</a></span></td>
                                     <td>{{ $data->created_at}}</td>
                                     <td>
                                         <?php if($data->status == '1'){ ?>
-                                        <a href="{{url('/update_pendaftaran',$data->id)}}" class="btn btn-success btn-xs mb-3">Lolos Seleksi</a>
+                                        <a href="{{url('/update_pendaftaran',$data->id_users)}}" class="btn btn-success btn-xs mb-3">Lolos Seleksi</a>
                                         <?php }else{ ?>
-                                        <a href="{{url('/update_pendaftaran',$data->id)}}" class="btn btn-danger btn-xs mb-3">Belum Lolos Seleksi</a>
+                                        <a href="{{url('/update_pendaftaran',$data->id_users)}}" class="btn btn-danger btn-xs mb-3">Belum Lolos Seleksi</a>
                                         <?php } ?>
-                                        <button class="btn btn-info btn-xs mb-3" data-toggle="modal" data-target="#edit{{ $data->id}}">Edit Data</button>
+                                        <button class="btn btn-info btn-xs mb-3" data-toggle="modal" data-target="#edit{{ $data->id_users}}">Edit Data</button>
                                     </td>
-                                        @if (!empty($data->magang->jenis_magang))
-                                    <td>{{ $data->magang->jenis_magang}}</td>
-                                        @else
-                                    <td>{{ Auth::user()->jenis_magangs }}</td>
-                                        @endif
-
-
-                                        @if (!empty($data->penempatan->lokasi))
-                                    <td>{{ $data->penempatan->lokasi}}</td>
-                                        @else
-                                    <td>{{ Auth::user()->penempatans }}</td>
-                                        @endif
-
-
-
-                                        @if (!empty($data->divisi->departemen))
-                                    <td>{{ $data->divisi->departemen}}</td>
-                                        @else
-                                    <td>{{ Auth::user()->divisis }}</td>
-                                        @endif
+                                    <td>{{ $data->jenis_magang}}</td>
+                                    <td>{{ $data->lokasi }}</td>
+                                    <td>{{ $data->departemen}}</td>
                                 </tr>
                                 @endforeach
                                 @foreach ($users as $data)
-                                <div class="modal fade" id="edit{{ $data->id}}">
+                                <div class="modal fade" id="edit{{ $data->id_users}}">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content bg-info">
                                             <div class="modal-header">
                                                 <div class="modal-body">
-                                                    <form action="/edit_data_peserta/{{ $data->id}}" method="POST" enctype="multipart/form-data">
+                                                    <form action="/edit_data_peserta/{{ $data->id_users }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                     <div class="form-group" hidden>
                                                         <label for="nik" class="col-form-label"><b>NIK</b></label>
@@ -95,55 +78,55 @@
                                                         <input type="text" name="berkas" id="berkas" class="form-control"  value="{{ $data->berkas }}" hidden>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="penempatans" class="col-form-label"><b>Penempatan Magang</b></label>
-                                                        <select name="penempatans" class="custom-select">
+                                                        <label for="id_penempatan" class="col-form-label"><b>Penempatan Magang</b></label>
+                                                        <select name="id_penempatan" class="custom-select">
                                                             <option selected="selected">Pilih sesuai Penempatan Magang</option>
                                                             @foreach ($tempat as $data )
-                                                            @if ($data->penempatans == $data->lokasi)
-                                                            <option value="{{$data->penempatans}}">{{$data->lokasi}}></option>
+                                                            @if ($data->id_penempatan == $data->lokasi)
+                                                            <option value="{{$data->id_penempatan}}">{{$data->lokasi}}></option>
                                                             @else ($data->penempatans == $data->lokasi)
-                                                            <option value="{{ $data->id }}">{{ $data->lokasi}}</option>
+                                                            <option value="{{ $data->id_penempatan }}">{{ $data->lokasi}}</option>
                                                             @endif
                                                             @endforeach
                                                         </select>
                                                         <div class="text-danger">
-                                                            @error('penempatans')
+                                                            @error('id_penempatan')
                                                                 {{$message}}
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="divisis" class="col-form-label"><b>Divisi Departemen</b></label>
-                                                        <select name="divisis" class="custom-select">
+                                                        <label for="id_divisi" class="col-form-label"><b>Divisi Departemen</b></label>
+                                                        <select name="id_divisi" class="custom-select">
                                                             <option selected="selected">Pilih sesuai Divisi Departemen</option>
                                                             @foreach ($depart as $data )
-                                                            @if ($data->divisis == $data->departemen)
-                                                            <option value="{{$data->divisis}}">{{$data->departemen}} </option>
+                                                            @if ($data->id_divisi == $data->departemen)
+                                                            <option value="{{$data->id_divisi}}">{{$data->departemen}} </option>
                                                             @else ($data->divisis == $data->departemen)
-                                                            <option value="{{ $data->id }}">{{ $data->departemen}}</option>
+                                                            <option value="{{ $data->id_divisi }}">{{ $data->departemen}}</option>
                                                             @endif
                                                             @endforeach
                                                         </select>
                                                         <div class="text-danger">
-                                                            @error('divisis')
+                                                            @error('id_divisi')
                                                                 {{$message}}
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="jenis_magangs" class="col-form-label"><b>Jenis Magang</b></label>
-                                                        <select name="jenis_magangs" class="custom-select">
+                                                        <label for="id_magang" class="col-form-label"><b>Jenis Magang</b></label>
+                                                        <select name="id_magang" class="custom-select">
                                                             <option selected="selected">Pilih sesuai Jenis Magang</option>
                                                             @foreach ($magang as $data )
-                                                            @if ($data->jenis_magangs == $data->jenis_magang)
-                                                            <option value="{{$data->jenis_magangs}}">{{$data->jenis_magang}} </option>
+                                                            @if ($data->id_magang == $data->id_magang)
+                                                            <option value="{{$data->id_magang}}">{{$data->jenis_magang}} </option>
                                                             @else ($data->jenis_magangs == $data->departemen)
-                                                            <option value="{{ $data->id }}">{{ $data->jenis_magang}}</option>
+                                                            <option value="{{ $data->id_magang }}">{{ $data->jenis_magang}}</option>
                                                             @endif
                                                             @endforeach
                                                         </select>
                                                         <div class="text-danger">
-                                                            @error('jenis_magangs')
+                                                            @error('id_magang')
                                                                 {{$message}}
                                                             @enderror
                                                         </div>

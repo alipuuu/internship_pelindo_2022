@@ -11,6 +11,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-icons.css" rel="stylesheet">
         <link href="css/templatemo-leadership-event.css" rel="stylesheet">
+
+        <script src="dist/sweetalert.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="dist/sweetalert.css">
     </head>
 
     <body>
@@ -619,24 +623,35 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-12 mx-auto">
-                            <form class="custom-form contact-form bg-white shadow-lg" action="#" method="post" role="form">
+                            <form class="custom-form contact-form bg-white shadow-lg" action="/insert_theysay" method="post" role="document" enctype="multipart/form-data">
+                                @csrf
+                                {{ csrf_field() }}
                                 <h2><center>Do you have anything to say?</center></h2>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-12">
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{old('name')}}" required>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email" required="">
+                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email" value="{{old('email')}}" required>
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message"></textarea>
-                                        <button type="submit" class="form-control">Submit</button>
+                                        <input rows="5" type="text" name="message" id="message" class="form-control" placeholder="Message" value="{{old('message')}}" required>
+                                        {{-- <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message" value="{{old('message')}}"></textarea> --}}
+                                        <button type="submit" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-3']);" class="form-control">Submit</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                <br><br>
+                <center>
+                @if (Session::has('status'))
+                <div class="col-lg-4 col-12 alert alert-success" role="alert">
+                    <center><strong>{{Session::get('message')}}</strong></center>
+                </div>
+                @endif
+                </center>
             </section>
         </main>
         <footer class="site-footer">
@@ -685,5 +700,14 @@
         <script src="js/jquery.sticky.js"></script>
         <script src="js/click-scroll.js"></script>
         <script src="js/custom.js"></script>
+
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">
+        <script>
+        document.querySelector('.sweet-3').onclick = function(){
+        swal("Saved Changed!", "You clicked the button!", "success");
+        };
+        </script>
     </body>
 </html>

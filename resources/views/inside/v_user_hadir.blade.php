@@ -11,12 +11,12 @@
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-success">
                                 <tr class="text-white">
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Jenis Absensi</th>
-                                    <th scope="col">Datang / Pulang</th>
-                                    <th scope="col">Check Clock</th>
-                                    <th scope="col">Bukti Kehadiran</th>
-                                    <th scope="col">Jadwal WFH</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Absensi</th>
+                                    <th>Datang / Pulang</th>
+                                    <th>Check Clock</th>
+                                    <th>Bukti Kehadiran</th>
+                                    <th>Jadwal WFH</th>
                                 </tr>
                             </thead>
                             <tbody>

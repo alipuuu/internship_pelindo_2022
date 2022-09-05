@@ -23,7 +23,8 @@ class UserDaftarController extends Controller
     public function index()
     {
         // dd('');
-        $users = UserrModel::orderBy('id', 'ASC')->get();   //pdhl ws tak orderBy tapi kok gaiso hiks
+        $users = UserrModel::orderBy('id_users', 'ASC')->get();
+        $users = $this->UserrModel->semua();  //pdhl ws tak orderBy tapi kok gaiso hiks
         // dd($users);
         $daftar = UserrModel::where('status','1')->get();
         $editdaftar = UserrModel::all();
@@ -38,7 +39,7 @@ class UserDaftarController extends Controller
     {
         // dd();
         //get product status with the help of product ID
-        $pendaftaran = UserrModel::select('status')->where('id','=',$id)->first();
+        $pendaftaran = UserrModel::select('status')->where('id_users','=',$id)->first();
         // dd($pendaftaran);
         //Check user status
         if($pendaftaran->status == '1'){
@@ -49,7 +50,7 @@ class UserDaftarController extends Controller
 
         //update product status
         $values = array('status' => $status );
-        UserrModel::where('id',$id)->update($values);
+        UserrModel::where('id_users',$id)->update($values);
         return redirect()->route('user_daftar')->with('pesan', 'Data berhasil ditambahkan!');
     }
 
@@ -59,9 +60,9 @@ class UserDaftarController extends Controller
         $tempat->nik = $request->nik;
         $tempat->no_telp = $request->no_telp;
         $tempat->berkas = $request->berkas;
-        $tempat->penempatans = $request->penempatans;
-        $tempat->divisis = $request->divisis;
-        $tempat->jenis_magangs = $request->jenis_magangs;
+        $tempat->id_penempatan = $request->id_penempatan;
+        $tempat->id_divisi = $request->id_divisi;
+        $tempat->id_magang = $request->id_magang;
         $tempat->save();
 
         if($tempat){

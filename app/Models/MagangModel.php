@@ -10,7 +10,7 @@ class MagangModel extends Model
 {
     protected $table = 'magang';
     protected $guarded = [];
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_magang';
     protected $fillable = ['jenis_magang','ket'];
 
     public function allData()
@@ -26,14 +26,14 @@ class MagangModel extends Model
     public function editData($id , $data)
     {
         DB::table('magang')
-            ->where('id',$id)
+            ->where('id_magang',$id)
             ->update($data);
     }
 
     public function deleteData($id)
     {
         DB::table('magang')
-            ->where('id',$id)
+            ->where('id_magang',$id)
             ->delete();
     }
 }

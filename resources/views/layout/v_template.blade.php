@@ -280,27 +280,6 @@ else {
             order: [[ 3, "desc" ]],
         });
     });
-    $(document).ready(function () {
-        $('#table-datatables-2').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['excel', 'print'],
-            order: [[ 3, "desc" ]],
-        });
-    });
-    $(document).ready(function () {
-        $('#table-datatables-3').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['excel', 'print'],
-            order: [[ 3, "desc" ]],
-        });
-    });
-    $(document).ready(function () {
-        $('#table-datatables-4').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['excel', 'print'],
-            order: [[ 3, "desc" ]],
-        });
-    });
 </script>
 </body>
 

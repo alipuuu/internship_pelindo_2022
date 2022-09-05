@@ -13,35 +13,31 @@
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
                                     <th class="text-center">No</th>
-                                    <th scope="col">Nama Lengkap</th>
-                                    <th scope="col">NIK</th>
-                                    <th scope="col">Nomor Handphone</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Berkas</th>
-                                    <th class="text-center">Created At</th>
-                                    <th scope="col">Action</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <?php $no=1; ?>
-                                @foreach ($pendaftaran as $data)
+                                <?php $no=1; ?>
+                                @foreach ($theysay as $data)
                                 <tr>
-                                    <td class="text-center">{{$no++}}</td>
-                                    <th scope="row">{{ $data->nama_lengkap }}</th>
-                                    <td>{{ $data->nik }}</td>
-                                    <td>{{ $data->no_telp }}</td>
+                                    <td>{{$no++}}</td>
+                                    <th>{{ $data->name }}</th>
                                     <td>{{ $data->email }}</td>
-                                    <td><a href="{{ $data->berkas }}"  target="_blank" download><span class="fa fa-download"></span><span class="icon-name"> {{ $data->berkas }}</a></span></td>
-                                    <td class="text-center">{{ $data->created_at}}</td>
-                                    <td class="text-center">
+                                    <td>{{ $data->message }}</td>
+                                    <td>{{ $data->created_at}}</td>
+                                    <td>
                                         <?php if($data->status == '1'){ ?>
-                                        <a href="{{url('/update_pendaftaran',$data->id)}}" class="btn btn-success btn-xs mb-3">Lolos Seleksi</a>
+                                        <a href="{{url('/update_theysay',$data->id)}}" class="btn btn-success btn-xs mb-3">Ditampilkan pada Dashboard</a>
                                         <?php }else{ ?>
-                                        <a href="{{url('/update_pendaftaran',$data->id)}}" class="btn btn-danger btn-xs mb-3">Belum Lolos Seleksi</a>
+                                        <a href="{{url('/update_theysay',$data->id)}}" class="btn btn-danger btn-xs mb-3">Tidak Ditampilkan</a>
                                         <?php } ?>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

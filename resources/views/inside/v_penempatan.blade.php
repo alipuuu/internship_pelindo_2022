@@ -62,10 +62,10 @@
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
-                                    <th scope="col">Nama Lokasi</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Action</th>
+                                    <th>Nama Lokasi</th>
+                                    <th>Alamat</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

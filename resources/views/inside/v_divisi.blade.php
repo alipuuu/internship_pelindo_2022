@@ -62,10 +62,10 @@
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
-                                    <th scope="col">Divisi</th>
-                                    <th scope="col">Departemen</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Action</th>
+                                    <th>Divisi</th>
+                                    <th>Departemen</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -52,7 +52,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required'],
-            'jenis_magang' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
             'nik' => ['required'],
@@ -61,8 +60,9 @@ class RegisterController extends Controller
             'berkas' => ['required'],
             'status' => ['required'],
             'level' => ['required'],
-            'penempatans' => ['required'],
-            'divisis' => ['required'],
+            'id_penempatan' => ['required'],
+            'id_divisi' => ['required'],
+            'id_magang' => ['required'],
         ]);
     }
 
@@ -77,7 +77,6 @@ class RegisterController extends Controller
         // dd($data);
         return UserrModel::create([
             'name' => $data['name'],
-            'jenis_magang' => $data['jenis_magang'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'nik' => $data['nik'],
@@ -86,8 +85,9 @@ class RegisterController extends Controller
             'berkas' => $data['berkas'],
             'status' => $data['status'],
             'level' => $data['level'],
-            'penempatans' => $data['penempatans'],
-            'divisis' => $data['divisis'],
+            'id_penempatan' => $data['id_penempatan'],
+            'id_divisi' => $data['id_divisi'],
+            'id_magang' => $data['id_magang'],
         ]);
     }
 

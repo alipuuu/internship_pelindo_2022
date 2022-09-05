@@ -11,16 +11,16 @@
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
-                                    <th scope="col">Nama Lengkap</th>
-                                    <th scope="col">Jurusan / Prodi</th>
-                                    <th scope="col">Universitas</th>
-                                    <th scope="col">Tanggal Sidang</th>
-                                    <th scope="col">File Laporan (PDF) dan PPT</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Jurusan / Prodi</th>
+                                    <th>Universitas</th>
+                                    <th>Tanggal Sidang</th>
+                                    <th>File Laporan (PDF) dan PPT</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">Alifah Armansyah Putri</th>
+                                    <th>Alifah Armansyah Putri</th>
                                     <td>Teknik Telekomunikasi</td>
                                     <td>Politeknik Elektronika Negeri Surabaya</td>
                                     <td>10 September 2022</td>

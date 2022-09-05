@@ -11,7 +11,7 @@ class PenempatanModel extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = "penempatan";
-    protected $primaryKey = "id"; // -> primary keynya apa ?
+    protected $primaryKey = "id_penempatan"; // -> primary keynya apa ?
     protected $fillable =['lokasi','alamat'];
 
     public function allData()
@@ -27,14 +27,14 @@ class PenempatanModel extends Model
     public function editData($id , $data)
     {
         DB::table('penempatan')
-            ->where('id',$id)
+            ->where('id_penempatan',$id)
             ->update($data);
     }
 
     public function deleteData($id)
     {
         DB::table('penempatan')
-            ->where('id',$id)
+            ->where('id_penempatan',$id)
             ->delete();
     }
 }

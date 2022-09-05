@@ -62,9 +62,10 @@
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
-                                    <th scope="col">Jenis Magang</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Action</th>
+                                    <th>Jenis Magang</th>
+                                    <th>Keterangan</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,6 +73,7 @@
                                 <tr>
                                     <td>{{$data->jenis_magang}}</td>
                                     <td>{{$data->ket}}</td>
+                                    <td>{{$data->created_at}}</td>
                                     <td>
                                         <button class="btn btn-warning btn-xs mb-3" data-toggle="modal" data-target="#update{{ $data->id}}">Update</button>
                                         <button class="btn btn-danger btn-xs mb-3" data-toggle="modal" data-target="#delete{{ $data->id}}">Delete</button>

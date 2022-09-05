@@ -6,7 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HadirController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\MagangController;
-use App\Http\Controllers\TheySayController;
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserHadirController;
@@ -18,6 +17,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\UserTidakHadirController;
 use App\Http\Controllers\FinalPresentationController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserFinalPresentationController;
 
 /*
@@ -35,6 +35,11 @@ Route::get('/', function () {
     return view('index');
 });
 
+// what they say
+Route::get('/theysay', [IndexController::class,'index'])->name('theysay');
+Route::post('/insert_theysay', [IndexController::class,'insert_theysay'])->name('insert_theysay');
+Route::get('/update_theysay/{id}',[IndexController::class,'status_update']);
+
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -44,9 +49,6 @@ Route::post('change_password', [ChangePasswordController::class,'store'])->name(
 
 // myprofile
 Route::get('/change_password', [ChangePasswordController::class,'index'])->name('change_password');
-
-// what they say
-Route::get('/theysay', [TheySayController::class,'index'])->name('theysay');
 
 // dashboard
 Route::get('/dashboard_user', [DashboardUserController::class,'index'])->name('dashboard_user');
@@ -73,8 +75,8 @@ Route::get('/delete_instansi/{id}', [InstansiController::class,'delete_instansi'
 // magang
 Route::get('/magang', [MagangController::class,'index'])->name('magang');
 Route::post('/insert_magang', [MagangController::class,'insert_magang'])->name('insert_magang');
-Route::post('/update_magang/{id}', [MagangController::class,'update_magang'])->name('update_magang');
-Route::get('/delete_magang/{id}', [MagangController::class,'delete_magang'])->name('delete_magang');
+Route::post('/update_magang/{id_users}', [MagangController::class,'update_magang'])->name('update_magang');
+Route::get('/delete_magang/{id_users}', [MagangController::class,'delete_magang'])->name('delete_magang');
 
 // user daftar
 Route::get('/user_daftar', [UserDaftarController::class,'index'])->name('user_daftar');

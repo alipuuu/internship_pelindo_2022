@@ -14,7 +14,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="modal-body">
-                                <form action="/update_datapribadi/{{$datapribadi->id}}" method="POST" enctype="multipart/form-data">
+                                <form action="/update_datapribadi/{{$user->id_users}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method("PUT")
                                 <div class="form-group">
@@ -42,16 +42,16 @@
                                     <input type="file" name="berkas" id="berkas" class="form-control"  value="{{ Auth::user()->berkas }}" >
                                 </div>
                                 <div class="form-group" hidden>
-                                    <label for="penempatans" class="col-form-label"><b>Penempatan Lokasi Magang</b></label>
-                                    <input type="text" name="penempatans" id="penempatans" class="form-control"  value="{{ Auth::user()->penempatans }}" >
+                                    <label for="id_penempatan" class="col-form-label"><b>Penempatan Lokasi Magang</b></label>
+                                    <input type="text" name="id_penempatan" id="id_penempatan" class="form-control"  value="{{ Auth::user()->id_penempatan }}" >
                                 </div>
                                 <div class="form-group" hidden>
-                                    <label for="divisis" class="col-form-label"><b>Divisi</b></label>
-                                    <input type="text" name="divisis" id="divisis" class="form-control" value="{{ Auth::user()->divisis }}" >
+                                    <label for="id_divisi" class="col-form-label"><b>Divisi</b></label>
+                                    <input type="text" name="id_divisi" id="id_divisi" class="form-control" value="{{ Auth::user()->id_divisi }}" >
                                 </div>
                                 <div class="form-group" hidden>
-                                    <label for="jenis_magangs" class="col-form-label"><b>Jenis Magang</b></label>
-                                    <input type="text" name="jenis_magangs" id="jenis_magangs" class="form-control"  value="{{ Auth::user()->jenis_magangs }}" >
+                                    <label for="id_magang" class="col-form-label"><b>Jenis Magang</b></label>
+                                    <input type="text" name="id_magang" id="id_magang" class="form-control"  value="{{ Auth::user()->id_magang }}" >
                                 </div>
                                 <div class="col-lg-12 mt-5">
                                     <button class="btn btn-primary btn-lg btn-block sweet-3" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-3']);" type="submit">Submit</button>
@@ -95,19 +95,21 @@
             <th>{{ Auth::user()->berkas }}</th>
             </tr>
             <tr>
+            {{--  --}}
             <th width="150px">Penempatan Lokasi Magang</th>
             <th width="50px">:</th>
-            <th>{{ Auth::user()->penempatans}}</th>
+            <th>{{ $user->penempatan->lokasi }}</th>
             </tr>
             <tr>
             <th width="150px">Divisi Departemen</th>
             <th width="50px">:</th>
-            <th>{{ Auth::user()->divisis }}</th>
+            <th>{{ $user->divisi->departemen }}</th>
             </tr>
             <tr>
             <th width="150px">Jenis Magang</th>
             <th width="50px">:</th>
-            <th>{{ Auth::user()->jenis_magangs}}</th>
+            <th>{{ $user->magang->jenis_magang }}</th>
+            {{--  --}}
             </tr>
             </table>
         </div>

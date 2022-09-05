@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenempatanTable extends Migration
+class CreateTheysayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePenempatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('penempatan', function (Blueprint $table) {
-            $table->increments('id_penempatan');
-            $table->string('lokasi');
-            $table->string('alamat');
+        Schema::create('theysay', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('message');
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePenempatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penempatan');
+        Schema::dropIfExists('theysay');
     }
 }

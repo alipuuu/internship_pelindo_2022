@@ -142,9 +142,9 @@
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp" hidden>
-                            <label for="penempatans">Pennempatans</label>
-                            <input type="text" id="penempatans"class="form-control" name="penempatans"  value="-" required autocomplete="penempatans" autofocus>
-                            @error('penempatans')
+                            <label for="id_penempatan">Penempatan</label>
+                            <input type="text" id="id_penempatan"class="form-control" name="id_penempatan"  value="-" required autocomplete="id_penempatan" autofocus>
+                            @error('id_penempatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -152,9 +152,9 @@
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp" hidden>
-                            <label for="divisis">Divisis</label>
-                            <input type="text" id="divisis"class="form-control" name="divisis" value="-" required autocomplete="divisis" autofocus>
-                            @error('divisis')
+                            <label for="id_divisi">Divisi</label>
+                            <input type="text" id="id_divisi" class="form-control" name="id_divisi" value="-" required autocomplete="id_divisi" autofocus>
+                            @error('id_divisi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -162,9 +162,9 @@
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp" hidden>
-                            <label for="jenis_magang">Jenis Magang</label>
-                            <input type="text" id="jenis_magang"class="form-control" name="jenis_magang" value="-" required autocomplete="jenis_magang" autofocus >
-                            @error('jenis_magang')
+                            <label for="id_magang">Jenis Magang</label>
+                            <input type="text" id="id_magang"class="form-control" name="id_magang" value="-" required autocomplete="id_magang" autofocus >
+                            @error('id_magang')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -1,0 +1,16 @@
+@foreach ($gettheysay as $data )
+<div class="card">
+    <div class="card-body bg1">
+        <h4 class="header-title text-white">What They Say</h4>
+        <div class="testimonial-carousel owl-carousel">
+            <div class="tst-item">
+                <div class="tstu-content">
+                    <h4 class="tstu-name">{{$data->name}}</h4>
+                    <span class="profsn">{{$data->email}}</span>
+                    <p>{{$data->message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach

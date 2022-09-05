@@ -75,18 +75,18 @@
     <div class="col-lg-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Data Pendaftar </h4>
+                <h4 class="header-title">Data Kampus dan Sekolah  </h4>
                 <div class="single-table">
                     <div class="table-responsive">
                         <table id="table-datatables" class="table text-center">
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
-                                    <th scope="col">Nama Kampus/Sekolah</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Nomer Telpon</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Action</th>
+                                    <th>Nama Kampus/Sekolah</th>
+                                    <th>Alamat</th>
+                                    <th>Nomer Telpon</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
