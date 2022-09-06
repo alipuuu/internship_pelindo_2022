@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HadirController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\UserHadirController;
 use App\Http\Controllers\PenempatanController;
 use App\Http\Controllers\TidakHadirController;
@@ -17,7 +20,6 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\UserTidakHadirController;
 use App\Http\Controllers\FinalPresentationController;
-use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserFinalPresentationController;
 
 
@@ -35,7 +37,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // change password
-Route::post('change-password', [ChangePasswordController::class,'index']);
+Route::post('change_password', [ChangePasswordController::class,'index'])->name('change_password');
 Route::post('change_password', [ChangePasswordController::class,'store'])->name('change_password');
 
 // myprofile
@@ -69,6 +71,18 @@ Route::post('/insert_magang', [MagangController::class,'insert_magang'])->name('
 Route::post('/update_magang/{id_users}', [MagangController::class,'update_magang'])->name('update_magang');
 Route::get('/delete_magang/{id_users}', [MagangController::class,'delete_magang'])->name('delete_magang');
 
+// Jadwal Kehadiran
+Route::get('/jadwal_kehadiran', [JadwalController::class,'index'])->name('jadwal_kehadiran');
+Route::post('/insert_jadwal', [JadwalController::class,'insert_jadwal'])->name('insert_jadwal');
+Route::post('/update_jadwal/{id_jadwal}', [JadwalController::class,'update_jadwal'])->name('update_jadwal');
+Route::get('/delete_jadwal/{id_jadwal}', [JadwalController::class,'delete_jadwal'])->name('delete_jadwal');
+
+// Jenis Kehadiran
+Route::get('/jenis_kehadiran', [KehadiranController::class,'index'])->name('jenis_kehadiran');
+Route::post('/insert_kehadiran', [KehadiranController::class,'insert_kehadiran'])->name('insert_kehadiran');
+Route::post('/update_kehadiran/{id_kehadiran}', [KehadiranController::class,'update_kehadiran'])->name('update_kehadiran');
+Route::get('/delete_kehadiran/{id_kehadiran}', [KehadiranController::class,'delete_jkehadiran'])->name('delete_kehadiran');
+
 // user daftar
 Route::get('/user_daftar', [UserDaftarController::class,'index'])->name('user_daftar');
 Route::post('/edit_data_peserta/{id}', [UserDaftarController::class,'edit_data_peserta'])->name('edit_data_peserta');
@@ -83,8 +97,8 @@ Route::put('/update_datapribadi/{id}', [DataPribadiController::class,'update_dat
 
 // absensi hadir
 Route::get('/hadir', [HadirController::class,'index'])->name('hadir');
+Route::post('/update_hadir', [HadirController::class,'update_hadir'])->name('update_hadir');
 Route::get('/user_hadir', [UserHadirController::class,'index'])->name('user_hadir');
-Route::post('/insert_hadir', [HadirController::class,'insert_hadir'])->name('insert_hadir');
 
 // absensi tidak hadir
 Route::get('/tidakhadir', [TidakHadirController::class,'index'])->name('tidakhadir');
@@ -94,9 +108,6 @@ Route::post('/insert_tidakhadir', [TidakHadirController::class,'insert_tidakhadi
 // final presentation
 Route::get('/final_presentation', [FinalPresentationController::class,'index'])->name('final_presentation');
 Route::get('/user_final_presentation', [UserFinalPresentationController::class,'index'])->name('user_final_presentation');
-
-
-
 
 
 

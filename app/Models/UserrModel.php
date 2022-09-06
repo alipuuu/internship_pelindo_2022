@@ -40,7 +40,9 @@ class UserrModel extends Authenticatable
     'level',
     'id_penempatan',
     'id_divisi',
-    'id_magang'];
+    'id_magang',
+    'id_jadwal',
+    'id_kehadiran'];
 
     public function penempatan()
     {

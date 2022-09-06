@@ -63,6 +63,8 @@ class RegisterController extends Controller
             'id_penempatan' => ['required'],
             'id_divisi' => ['required'],
             'id_magang' => ['required'],
+            'id_jadwal' => ['required'],
+            'id_kehadiran' => ['required'],
         ]);
     }
 
@@ -88,6 +90,8 @@ class RegisterController extends Controller
             'id_penempatan' => $data['id_penempatan'],
             'id_divisi' => $data['id_divisi'],
             'id_magang' => $data['id_magang'],
+            'id_jadwal' => $data['id_jadwal'],
+            'id_kehadiran' => $data['id_kehadiran'],
         ]);
     }
 

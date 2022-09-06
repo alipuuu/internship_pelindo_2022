@@ -5,12 +5,9 @@
     <div class="card">
         <div class="card-body">
             <h4 class="header-title">Data Pendaftar </h4>
-            {{-- @foreach ($datapribadi as $data) --}}
             <button class="btn btn-info btn-sm mb-3" data-toggle="modal" data-target="#edit">Edit Data</button>
-            {{-- @endforeach --}}
-            {{-- @foreach ($datapribadi as $data) --}}
             <div class="modal fade" id="edit">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="modal-body">
@@ -62,7 +59,6 @@
                     </div>
                 </div>
             </div>
-            {{-- @endforeach --}}
             <table class="table">
             <tr>
             <th>Nama Lengkap</th>
@@ -95,13 +91,12 @@
             <th>{{ Auth::user()->berkas }}</th>
             </tr>
             <tr>
-            {{--  --}}
             <th >Penempatan Lokasi Magang</th>
             <th >:</th>
                 @if (Auth::user()->id_penempatan == Auth::user()->lokasi)
                     <th> Belum Ditentukan oleh Admin</th>
-                @elseif ($user->penempatan->lokasi == $user->penempatan->lokasi)
-                    <th>{{ $user->penempatan->lokasi }}</th>
+                @else
+                    <th>{{ $user->penempatan?->lokasi ??'Belum ditentukan' }}</th>
                 @endif
             </tr>
             <tr>
@@ -109,8 +104,8 @@
             <th>:</th>
                 @if (Auth::user()->id_divisi == Auth::user()->departemen)
                     <th> Belum Ditentukan oleh Admin</th>
-                @elseif ($user->divisi->departemen == $user->divisi->departemen)
-                    <th>{{ $user->divisi->departemen }}</th>
+                @else
+                    <th>{{ $user->divisi?->departemen ??'Belum ditentukan' }}</th>
                 @endif
             </tr>
             <tr>
@@ -118,10 +113,9 @@
             <th>:</th>
                 @if (Auth::user()->id_magang == Auth::user()->jenis_magang)
                     <th> Belum Ditentukan oleh Admin</th>
-                @elseif ($user->magang->jenis_magang == $user->magang->jenis_magang)
-                    <th>{{ $user->magang->jenis_magang }}</th>
+                @else
+                    <th>{{ $user->magang?->jenis_magang ??'Belum ditentukan' }}</th>
                 @endif
-            {{--  --}}
             </tr>
             </table>
         </div>

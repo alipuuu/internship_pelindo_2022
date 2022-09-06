@@ -75,18 +75,18 @@
                                     <td>{{ $data->alamat }}</td>
                                     <td>{{ $data->created_at}}</td>
                                     <td>
-                                        <button class="btn btn-warning btn-xs mb-3" data-toggle="modal" data-target="#update{{ $data->id}}">Update</button>
-                                        <button class="btn btn-danger btn-xs mb-3" data-toggle="modal" data-target="#delete{{ $data->id}}">Delete</button>
+                                        <button class="btn btn-warning btn-xs mb-3" data-toggle="modal" data-target="#update{{ $data->id_penempatan}}">Update</button>
+                                        <button class="btn btn-danger btn-xs mb-3" data-toggle="modal" data-target="#delete{{ $data->id_penempatan}}">Delete</button>
                                     </td>
                                 </tr>
                                 @endforeach
                                 @foreach ($penempatan as $data)
-                                <div class="modal fade" id="update{{ $data->id}}">
+                                <div class="modal fade" id="update{{ $data->id_penempatan}}">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <div class="modal-body">
-                                                    <form action="/update_penempatan/{{ $data->id}}" method="POST" enctype="multipart/form-data">
+                                                    <form action="/update_penempatan/{{ $data->id_penempatan}}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                     <div class="form-group">
                                                         <label for="lokasi" class="col-form-label"><b>Nama Lokasi</b></label>
@@ -117,7 +117,7 @@
                                 </div>
                                 @endforeach
                                 @foreach ($penempatan as $data)
-                                <div class="modal fade" id="delete{{ $data->id}}">
+                                <div class="modal fade" id="delete{{ $data->id_penempatan}}">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -128,7 +128,7 @@
                                                 <p>Apakah anda yakin ingin menghapus <b>{{$data->lokasi}}</b>???</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="/delete_penempatan/{{ $data->id}}" class="btn btn-success pull-left">Yes</a>
+                                                <a href="/delete_penempatan/{{ $data->id_penempatan}}" class="btn btn-success pull-left">Yes</a>
                                                 <a class="btn btn-warning" data-dismiss="modal">No</a>
                                             </div>
                                         </div>

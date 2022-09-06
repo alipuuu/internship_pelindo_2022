@@ -171,6 +171,26 @@
                             @enderror
                             <div class="text-danger"></div>
                         </div>
+                        <div class="form-gp" hidden>
+                            <label for="id_jadwal">Hadir</label>
+                            <input type="text" id="id_jadwal"class="form-control" name="id_jadwal" value="Belum Ditentukan" required autocomplete="id_jadwal" autofocus >
+                            @error('id_jadwal')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <div class="text-danger"></div>
+                        </div>
+                        <div class="form-gp" hidden>
+                            <label for="id_kehadiran">Tidak Hadir</label>
+                            <input type="text" id="id_kehadiran"class="form-control" name="id_kehadiran" value="Belum Ditentukan" required autocomplete="id_kehadiran" autofocus >
+                            @error('id_kehadiran')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <div class="text-danger"></div>
+                        </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
                         </div>

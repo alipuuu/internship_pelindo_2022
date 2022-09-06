@@ -1,5 +1,5 @@
 @extends('layout.v_template')
-@section('title', 'Divisi Departemen Magang')
+@section('title', 'Jenis Kehadiran Magang')
 @section('content')
 <script src="dist/sweetalert.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -12,28 +12,28 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Masukkan Divisi Departemen Magang</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Masukkan Jenis Kehadiran Magang</button>
             <div class="modal fade bd-example-modal-lg">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="card">
                             <div class="card-body">
-                                <form action="/insert_divisi" method="POST" enctype="multipart/form-data">
+                                <form action="/insert_jenis" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 <div class="form-group">
-                                    <label for="divisi" class="col-form-label"><b>Divisi</b></label>
-                                    <input type="text" name="divisi" id="divisi" class="form-control" value="{{old('divisi')}}">
+                                    <label for="jenis_kehadiran" class="col-form-label"><b>jadwal kehadiran</b></label>
+                                    <input type="text" name="jenis_kehadiran" id="jenis_kehadiran" class="form-control" value="{{old('jenis_kehadiran')}}">
                                     <div class="text-danger">
-                                        @error('divisi')
+                                        @error('jenis_kehadiran')
                                             {{$message}}
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="departemen" class="col-form-label"><b>Departemen</b></label>
-                                    <input type="text" name="departemen" id="departemen" class="form-control" value="{{old('departemen')}}">
+                                    <label for="ket" class="col-form-label"><b>Keterangan</b></label>
+                                    <input type="text" name="ket" id="ket" class="form-control" value="{{old('ket')}}">
                                     <div class="text-danger">
-                                        @error('departemen')
+                                        @error('ket')
                                             {{$message}}
                                         @enderror
                                     </div>
@@ -59,46 +59,46 @@
                     <table id="table-datatables" class="table text-center">
                         <thead class="text-uppercase bg-primary">
                             <tr class="text-white">
-                                <th>Divisi</th>
-                                <th>Departemen</th>
+                                <th>jenis_kehadiran</th>
+                                <th>ket</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($divisi as $data)
+                            @foreach ($kehadiran as $data)
                             <tr>
-                                <td>{{$data->divisi}}</td>
-                                <td>{{$data->departemen}}</td>
+                                <td>{{$data->jenis_kehadiran}}</td>
+                                <td>{{$data->ket}}</td>
                                 <td>{{$data->created_at}}</td>
                                 <td>
-                                    <button class="btn btn-warning btn-xs mb-3" data-toggle="modal" data-target="#update{{ $data->id_divisi}}">Update</button>
-                                    <button class="btn btn-danger btn-xs mb-3" data-toggle="modal" data-target="#delete{{ $data->id_divisi}}">Delete</button>
+                                    <button class="btn btn-warning btn-xs mb-3" data-toggle="modal" data-target="#update{{ $data->id_kehadiran}}">Update</button>
+                                    <button class="btn btn-danger btn-xs mb-3" data-toggle="modal" data-target="#delete{{ $data->id_kehadiran}}">Delete</button>
                                 </td>
                             </tr>
                             @endforeach
-                            @foreach ($divisi as $data)
-                            <div class="modal fade" id="update{{ $data->id_divisi}}">
+                            @foreach ($kehadiran as $data)
+                            <div class="modal fade" id="update{{ $data->id_kehadiran}}">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="modal-body">
-                                                <form action="/update_divisi/{{ $data->id_divisi}}" method="POST" enctype="multipart/form-data">
+                                                <form action="/update_jenis_kehadiran/{{ $data->id_kehadiran}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                 <div class="form-group">
-                                                    <label for="divisi" class="col-form-label"><b>Divisi</b></label>
-                                                    <input type="text" name="divisi" id="divisi" class="form-control" value="{{$data->divisi}}">
+                                                    <label for="jenis_kehadiran" class="col-form-label"><b>jenis_kehadiran</b></label>
+                                                    <input type="text" name="jenis_kehadiran" id="jenis_kehadiran" class="form-control" value="{{$data->jenis_kehadiran}}">
                                                     <div class="text-danger">
-                                                        @error('divisi')
+                                                        @error('jenis_kehadiran')
                                                             {{$message}}
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="departemen" class="col-form-label"><b>Departemen</b></label>
-                                                    <input type="text" name="departemen" id="departemen" class="form-control" value="{{$data->departemen}}">
+                                                    <label for="ket" class="col-form-label"><b>ket</b></label>
+                                                    <input type="text" name="ket" id="ket" class="form-control" value="{{$data->ket}}">
                                                     <div class="text-danger">
-                                                        @error('departemen')
+                                                        @error('ket')
                                                             {{$message}}
                                                         @enderror
                                                     </div>
@@ -113,19 +113,19 @@
                                 </div>
                             </div>
                             @endforeach
-                            @foreach ($divisi as $data)
-                            <div class="modal fade" id="delete{{ $data->id_divisi}}">
+                            @foreach ($kehadiran as $data)
+                            <div class="modal fade" id="delete{{ $data->id_kehadiran}}">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Hapus Divisi Departemen</h5>
+                                            <h5 class="modal-title">Hapus jenis_kehadiran ket</h5>
                                             <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Apakah anda yakin ingin menghapus <b>{{$data->divisi}}</b>???</p>
+                                            <p>Apakah anda yakin ingin menghapus <b>{{$data->jenis_kehadiran}}</b>???</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="/delete_divisi/{{ $data->id_divisi}}" class="btn btn-success pull-left">Yes</a>
+                                            <a href="/delete_jenis_kehadiran/{{ $data->id_kehadiran}}" class="btn btn-success pull-left">Yes</a>
                                             <a class="btn btn-warning" data-dismiss="modal">No</a>
                                         </div>
                                     </div>

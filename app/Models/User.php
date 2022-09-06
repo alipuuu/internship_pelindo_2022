@@ -30,6 +30,8 @@ class User extends Authenticatable
         'id_magang',
         'id_penempatan',
         'id_divisi',
+        'id_jadwal',
+        'id_kehadiran',
     ];
 
     /**

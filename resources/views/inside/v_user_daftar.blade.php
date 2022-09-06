@@ -16,6 +16,7 @@
                             <thead class="text-uppercase bg-primary">
                                 <tr class="text-white">
                                     {{-- <th class="text-center">No</th> --}}
+                                    <th>ID</th>
                                     <th>Nama Lengkap</th>
                                     <th>Email</th>
                                     <th>NIK</th>
@@ -33,13 +34,14 @@
 
                                 @foreach ($users as $data)
                                 <tr>
+                                    <td>{{ $data->id_users}}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->nik }}</td>
                                     <td>{{ $data->instansi }}</td>
                                     <td>{{ $data->no_telp }}</td>
                                     <td><a href="{{ $data->berkas }}" target="_blank" download><span class="fa fa-download"></span><span class="icon-name"> {{ $data->berkas }}</a></span></td>
-                                    <td>{{ $data->created_at}}</td>
+                                    <td>{{ Auth::user()->created_at}}</td>
                                     <td>
                                         <?php if($data->status == '1'){ ?>
                                         <a href="{{url('/update_pendaftaran',$data->id_users)}}" class="btn btn-success btn-xs mb-3">Lolos Seleksi</a>
@@ -77,10 +79,26 @@
                                                         <label for="berkas" class="col-form-label"><b>Berkas</b></label>
                                                         <input type="text" name="berkas" id="berkas" class="form-control"  value="{{ $data->berkas }}" hidden>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="id_penempatan" class="col-form-label"><b>Penempatan Magang</b></label>
+                                                    <div class="form-group mt-5">
+                                                        <select name="id_magang" class="custom-select">
+                                                            <option selected>Pilih sesuai Jenis Magang</option>
+                                                            @foreach ($magang as $data )
+                                                            @if ($data->id_magang == $data->id_magang)
+                                                            <option value="{{$data->id_magang}}">{{$data->jenis_magang}} </option>
+                                                            @else
+                                                            <option value="{{ $data->id_magang }}">{{ $data->jenis_magang}}</option>
+                                                            @endif
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="text-danger">
+                                                            @error('id_magang')
+                                                                {{$message}}
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mt-5">
                                                         <select name="id_penempatan" class="custom-select">
-                                                            <option selected="selected">Pilih sesuai Penempatan Magang</option>
+                                                            <option selected>Pilih sesuai Penempatan Magang</option>
                                                             @foreach ($tempat as $data )
                                                             @if ($data->id_penempatan == $data->lokasi)
                                                             <option value="{{$data->id_penempatan}}">{{$data->lokasi}}></option>
@@ -95,10 +113,9 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="id_divisi" class="col-form-label"><b>Divisi Departemen</b></label>
+                                                    <div class="form-group mt-5">
                                                         <select name="id_divisi" class="custom-select">
-                                                            <option selected="selected">Pilih sesuai Divisi Departemen</option>
+                                                            <option selected>Pilih sesuai Departemen</option>
                                                             @foreach ($depart as $data )
                                                             @if ($data->id_divisi == $data->departemen)
                                                             <option value="{{$data->id_divisi}}">{{$data->departemen}} </option>
@@ -109,24 +126,6 @@
                                                         </select>
                                                         <div class="text-danger">
                                                             @error('id_divisi')
-                                                                {{$message}}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="id_magang" class="col-form-label"><b>Jenis Magang</b></label>
-                                                        <select name="id_magang" class="custom-select">
-                                                            <option selected="selected">Pilih sesuai Jenis Magang</option>
-                                                            @foreach ($magang as $data )
-                                                            @if ($data->id_magang == $data->id_magang)
-                                                            <option value="{{$data->id_magang}}">{{$data->jenis_magang}} </option>
-                                                            @else
-                                                            <option value="{{ $data->id_magang }}">{{ $data->jenis_magang}}</option>
-                                                            @endif
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="text-danger">
-                                                            @error('id_magang')
                                                                 {{$message}}
                                                             @enderror
                                                         </div>
